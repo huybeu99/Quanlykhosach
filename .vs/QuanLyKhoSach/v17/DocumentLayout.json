@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\QuanLyKhoSach\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|d:\\quanlykhosach\\quanlykhosach\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|solutionrelative:quanlykhosach\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|d:\\quanlykhosach\\quanlykhosach\\repository\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|solutionrelative:quanlykhosach\\repository\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|d:\\quanlykhosach\\quanlykhosach\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|solutionrelative:quanlykhosach\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|d:\\quanlykhosach\\quanlykhosach\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|solutionrelative:quanlykhosach\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|d:\\quanlykhosach\\quanlykhosach\\interface\\service\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D8E825-BD59-46EE-A6E3-9C84E1F3B229}|QuanLyKhoSach\\QuanLyKhoSach.csproj|solutionrelative:quanlykhosach\\interface\\service\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IBookService.cs",
+              "DocumentMoniker": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Interface\\Service\\IBookService.cs",
+              "RelativeDocumentMoniker": "QuanLyKhoSach\\Interface\\Service\\IBookService.cs",
+              "ToolTip": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Interface\\Service\\IBookService.cs",
+              "RelativeToolTip": "QuanLyKhoSach\\Interface\\Service\\IBookService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T04:18:50.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Services\\BookService.cs",
+              "RelativeDocumentMoniker": "QuanLyKhoSach\\Services\\BookService.cs",
+              "ToolTip": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Services\\BookService.cs",
+              "RelativeToolTip": "QuanLyKhoSach\\Services\\BookService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAowCYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T04:19:40.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookRepository.cs",
+              "DocumentMoniker": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Repository\\BookRepository.cs",
+              "RelativeDocumentMoniker": "QuanLyKhoSach\\Repository\\BookRepository.cs",
+              "ToolTip": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Repository\\BookRepository.cs",
+              "RelativeToolTip": "QuanLyKhoSach\\Repository\\BookRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T04:19:05.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Program.cs",
+              "RelativeDocumentMoniker": "QuanLyKhoSach\\Program.cs",
+              "ToolTip": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Program.cs",
+              "RelativeToolTip": "QuanLyKhoSach\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T03:18:12.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "QuanLyKhoSach\\Controllers\\BookController.cs",
+              "ToolTip": "D:\\QuanLyKhoSach\\QuanLyKhoSach\\Controllers\\BookController.cs",
+              "RelativeToolTip": "QuanLyKhoSach\\Controllers\\BookController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAACEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T02:31:14.614Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
