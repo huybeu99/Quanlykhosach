@@ -64,6 +64,7 @@ namespace QuanLyKhoSach.Repository
             ExitingBook.Book_Quantity = book.Book_Quantity;
             ExitingBook.Publisher_ID= book.Publisher_ID;
             ExitingBook.WareHouse_ID = book.WareHouse_ID;
+          
        
             await _context.SaveChangesAsync();
             return ExitingBook;

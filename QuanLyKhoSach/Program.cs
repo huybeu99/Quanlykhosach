@@ -12,23 +12,31 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<BookDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
+builder.Services.AddScoped<IWareHouseRepository, WareHouseRepository>();
+builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
+builder.Services.AddScoped<IPublisherService, PublisherService>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IStoreService, StoreService>();
+builder.Services.AddScoped<IWareHouseService, WareHouseService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IBookService,BookService>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-builder.Services.AddLogging(
-    logging => logging.AddConsole()
-    );
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+    logging.AddDebug(); // Thêm debug logging
+});
 builder.Services.AddHttpClient();
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowAllOrigins", policy =>
-//    {
-//        policy.AllowAnyOrigin()  
-//              .AllowAnyMethod() 
-//              .AllowAnyHeader(); 
-//    });
-//});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,7 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseCors("AllowAllOrigins");
+app.UseCors("AllowAllOrigins");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

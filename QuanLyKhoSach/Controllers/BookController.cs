@@ -13,24 +13,48 @@ namespace QuanLyKhoSach.Controllers
     {
 
         private readonly IBookService _bookService;
-        public BookController(IBookService bookService)
+        private readonly ILogger<BookController> _logger;
+        public BookController(IBookService bookService, ILogger<BookController> logger)
         {
             _bookService = bookService;
+            _logger = logger;
         }
-
         [HttpGet("allbooks")]
         public async Task<ActionResult<IEnumerable<BookDTO>>> GetAllBooks()
         {
             try
             {
+                _logger.LogInformation("Attempting to retrieve all books");
                 var books = await _bookService.GetAllBooksAsync();
+
+                if (books == null || !books.Any())
+                {
+                    _logger.LogWarning("No books found");
+                    return NoContent();
+                }
+
                 return Ok(books);
             }
-            catch (NotFoundException ex)
+            catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                _logger.LogError(ex, "Error retrieving books");
+                return StatusCode(500, "An error occurred while retrieving books");
             }
         }
+
+        //[HttpGet("allbooks")]
+        //public async Task<ActionResult<IEnumerable<BookDTO>>> GetAllBooks()
+        //{
+        //    try
+        //    {
+        //        var books = await _bookService.GetAllBooksAsync();
+        //        return Ok(books);
+        //    }
+        //    catch (NotFoundException ex)
+        //    {
+        //        return NotFound(ex.Message);
+        //    }
+        //}
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BookDTO>> GetBookByID(int id)
