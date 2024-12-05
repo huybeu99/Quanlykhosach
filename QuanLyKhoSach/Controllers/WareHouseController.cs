@@ -13,7 +13,7 @@ namespace QuanLyKhoSach.Controllers
         {
             _warehouseservice= warehouseservice;
         }
-        [HttpGet("allstore")]
+        [HttpGet("allwarehouse")]
         public async Task<ActionResult<IEnumerable<WareHouseDTO>>> GetAllWareHouse()
         {
             try

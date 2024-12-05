@@ -1,7 +1,10 @@
-﻿namespace QuanLyKhoSach.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace QuanLyKhoSach.Models
 {
     public class WareHouse
     {
+        [Key]
         public int WareHouse_ID { get; set; }
         public string WareHouse_Name { get; set; }
         public string WareHouse_Address { get; set;}

@@ -9,6 +9,7 @@ namespace QuanLyKhoSach.Interface.Repository
         Task<Book> AddBookAsync(Book book);
         Task<Book> UpdateBookAsync(Book book);
         Task DeleteBookAsync(int id);
+        Task<BookAuthor> AddAuthorToBookAsync(BookAuthor bookauthor);
         Task<IEnumerable<Book>> SearchBooksAsync(string title);
     }
 

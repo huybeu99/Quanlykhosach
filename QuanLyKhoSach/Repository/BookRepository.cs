@@ -36,7 +36,7 @@ namespace QuanLyKhoSach.Repository
 
         public async Task<Book> AddBookAsync(Book book)
         {
-            _context.Books.Add(book); 
+            _context.Books.Add(book);
             await _context.SaveChangesAsync();
             return book;
             //Add với SaveChange là phương thức của DbSet
@@ -44,7 +44,7 @@ namespace QuanLyKhoSach.Repository
 
         public async Task DeleteBookAsync(int id)
         {
-            var book = await _context.Books.FirstOrDefaultAsync(b=>b.Book_ID==id);
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.Book_ID == id);
             _context.Books.Remove(book);
             await _context.SaveChangesAsync();
         }
@@ -62,10 +62,10 @@ namespace QuanLyKhoSach.Repository
             ExitingBook.Year = book.Year;
             ExitingBook.Book_Description = book.Book_Description;
             ExitingBook.Book_Quantity = book.Book_Quantity;
-            ExitingBook.Publisher_ID= book.Publisher_ID;
+            ExitingBook.Publisher_ID = book.Publisher_ID;
             ExitingBook.WareHouse_ID = book.WareHouse_ID;
-          
-       
+
+
             await _context.SaveChangesAsync();
             return ExitingBook;
         }
@@ -82,5 +82,11 @@ namespace QuanLyKhoSach.Repository
             return await query.ToListAsync();
         }
 
+        public async Task<BookAuthor> AddAuthorToBookAsync(BookAuthor bookauthor)
+        {
+            _context.Book_Authors.Add(bookauthor);
+            await _context.SaveChangesAsync();
+            return bookauthor;
+        }
     }
 }

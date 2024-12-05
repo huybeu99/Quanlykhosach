@@ -9,52 +9,28 @@ namespace QuanLyKhoSach.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BookController : BaseController
+    public class BookController : ControllerBase
     {
 
         private readonly IBookService _bookService;
-        private readonly ILogger<BookController> _logger;
-        public BookController(IBookService bookService, ILogger<BookController> logger)
+        public BookController(IBookService bookService)
         {
             _bookService = bookService;
-            _logger = logger;
         }
+
         [HttpGet("allbooks")]
         public async Task<ActionResult<IEnumerable<BookDTO>>> GetAllBooks()
         {
             try
             {
-                _logger.LogInformation("Attempting to retrieve all books");
                 var books = await _bookService.GetAllBooksAsync();
-
-                if (books == null || !books.Any())
-                {
-                    _logger.LogWarning("No books found");
-                    return NoContent();
-                }
-
                 return Ok(books);
             }
-            catch (Exception ex)
+            catch (NotFoundException ex)
             {
-                _logger.LogError(ex, "Error retrieving books");
-                return StatusCode(500, "An error occurred while retrieving books");
+                return NotFound(ex.Message);
             }
         }
-
-        //[HttpGet("allbooks")]
-        //public async Task<ActionResult<IEnumerable<BookDTO>>> GetAllBooks()
-        //{
-        //    try
-        //    {
-        //        var books = await _bookService.GetAllBooksAsync();
-        //        return Ok(books);
-        //    }
-        //    catch (NotFoundException ex)
-        //    {
-        //        return NotFound(ex.Message);
-        //    }
-        //}
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BookDTO>> GetBookByID(int id)
@@ -126,6 +102,7 @@ namespace QuanLyKhoSach.Controllers
                 return StatusCode(500, new { message = "Lỗi khi xóa sách", error = ex.Message });
             }
         }
+
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<BookDTO>>> SearchBooks([FromQuery] string name = null)
         {
@@ -140,6 +117,14 @@ namespace QuanLyKhoSach.Controllers
                     "An error occurred while processing your request");
             }
         }
+
+        //// Thêm tác giả cho sách
+        //[HttpPost("{bookId}/authors")]
+        //public async Task<IActionResult> AddAuthorToBook(int bookId, int authorId)
+        //{
+        //    await _bookService.AddAuthorToBook(bookId, authorId);
+        //    return Ok();
+        //}
     }
         // Custom Exception
         public class NotFoundException : Exception

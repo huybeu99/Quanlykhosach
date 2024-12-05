@@ -22,6 +22,7 @@ namespace QuanLyKhoSach.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             // Cấu hình khóa cho bảng nhiều-nhiều
             modelBuilder.Entity<BookAuthor>()
                 .HasKey(bw => new { bw.Book_ID, bw.Author_ID });

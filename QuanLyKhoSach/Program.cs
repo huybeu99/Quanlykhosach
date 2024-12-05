@@ -5,12 +5,14 @@ using QuanLyKhoSach.Mapper;
 using QuanLyKhoSach.Models;
 using QuanLyKhoSach.Repository;
 using QuanLyKhoSach.Services;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddDbContext<BookDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<BookDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                                                               
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IWareHouseRepository, WareHouseRepository>();
@@ -37,6 +39,8 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"Connection String: {connectionString}");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

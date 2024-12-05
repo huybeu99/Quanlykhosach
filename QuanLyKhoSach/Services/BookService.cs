@@ -58,5 +58,12 @@ namespace QuanLyKhoSach.Services
             var books = await _bookRepository.SearchBooksAsync(name);
             return _mapper.Map<IEnumerable<BookDTO>>(books);
         }
+
+        public async Task<BookAuthorDTO> AddAuthorToBookAsync(BookAuthorDTO bookauthordto)
+        {
+            var bookauthor=_mapper.Map<BookAuthor>(bookauthordto);
+            var addedbookauthor=await _bookRepository.AddAuthorToBookAsync(bookauthor);
+            return _mapper.Map<BookAuthorDTO>(bookauthor);
+        }
     }
 }

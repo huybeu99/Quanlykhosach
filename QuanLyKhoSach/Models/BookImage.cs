@@ -4,6 +4,7 @@ namespace QuanLyKhoSach.Models
 {
     public class BookImage
     {
+        [Key]
         public int Image_ID { get; set; }
         public int Book_ID { get; set; }
         public string Image_Url { get; set; }

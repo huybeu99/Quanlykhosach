@@ -10,6 +10,7 @@ namespace QuanLyKhoSach.Interface.Service
         Task<BookDTO> AddBookAsync(BookDTO bookDto);
         Task<BookDTO> UpdateBookAsync(BookDTO bookDto);
         Task DeleteBookAsync(int id);
+        Task<BookAuthorDTO> AddAuthorToBookAsync(BookAuthorDTO bookauthordto);
         Task<IEnumerable<BookDTO>> SearchBooksAsync(string title);
 
     }

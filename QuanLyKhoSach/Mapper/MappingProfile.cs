@@ -24,7 +24,7 @@ namespace QuanLyKhoSach.Mapper
 
             CreateMap<Category,CategoryDTO>()
           .ForMember(dest => dest.Category_ID, opt => opt.MapFrom(src => src.Category_ID))
-          .ForMember(dest => dest.Category_ID, opt => opt.MapFrom(src => src.Category_ID))
+          .ForMember(dest => dest.Category_Name, opt => opt.MapFrom(src => src.Category_Name))
           .ForMember(dest => dest.Book, opt => opt.MapFrom(src => src.BookCategories.Select(ba => ba.Book.Book_Name)));
 
             CreateMap<Publisher, PublisherDTO>()

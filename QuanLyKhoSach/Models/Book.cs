@@ -1,10 +1,12 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace QuanLyKhoSach.Models
 {
     public class Book
     {
         //Khóa Chính
+        [Key]
         public int Book_ID { get; set; }
         //Thuộc tính cơ bản
         public string Book_Name { get; set; }
