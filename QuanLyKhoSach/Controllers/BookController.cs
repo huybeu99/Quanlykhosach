@@ -67,6 +67,7 @@ namespace QuanLyKhoSach.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<BookDTO>> UpdateBook([FromBody]BookDTO bookDTO,int id)
         {
+            Console.WriteLine($"Received BookDTO - Publisher_ID: {bookDTO.Publisher_ID} - WareHouse_ID:{bookDTO.WareHouse_ID}");
             if (id != bookDTO.Book_ID)
             {
                 return BadRequest(new { message = "ID không khớp" });
@@ -96,10 +97,13 @@ namespace QuanLyKhoSach.Controllers
             catch (DirectoryNotFoundException)
             {
                 return NotFound(new { message = "Không tìm thấy sách" });
+
             }
             catch (Exception ex)
             {
+                
                 return StatusCode(500, new { message = "Lỗi khi xóa sách", error = ex.Message });
+              
             }
         }
 

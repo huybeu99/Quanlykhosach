@@ -5,14 +5,15 @@ using QuanLyKhoSach.Mapper;
 using QuanLyKhoSach.Models;
 using QuanLyKhoSach.Repository;
 using QuanLyKhoSach.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddDbContext<BookDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-                                                               
+builder.Services.AddDbContext<BookDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IWareHouseRepository, WareHouseRepository>();
@@ -23,6 +24,7 @@ builder.Services.AddScoped<IStoreService, StoreService>();
 builder.Services.AddScoped<IWareHouseService, WareHouseService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddLogging(logging =>
 {
@@ -39,8 +41,6 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine($"Connection String: {connectionString}");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -60,10 +60,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllers();
-app.MapGet("/", async () =>
-{
-    var httpClient = app.Services.GetRequiredService<HttpClient>();
-    var response = await httpClient.GetStringAsync("https://pokeapi.co/api/v2/pokemon/ditto");
-    return $"Welcome to the Book Management API! Data: {response}";
-});
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();

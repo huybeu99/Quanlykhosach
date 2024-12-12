@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace QuanLyKhoSach.Models
 {
@@ -10,7 +9,7 @@ namespace QuanLyKhoSach.Models
         public int Book_ID { get; set; }
         //Thuộc tính cơ bản
         public string Book_Name { get; set; }
-        public int Year { get; set; }
+        public int Book_Year { get; set; }
         public string Book_Description { get; set; }
         public int Book_Quantity { get; set; }
         //Khóa ngoại
@@ -20,8 +19,8 @@ namespace QuanLyKhoSach.Models
         public WareHouse WareHouse { get; set; }
         public Publisher Publisher { get; set; }
         //Quan hệ nhiều-nhiều
-        public ICollection<BookAuthor> BookAuthors { get; set; }
-        public ICollection<BookCategory> BookCategories { get; set; }
+        public ICollection<BookAuthor> BookAuthor { get; set; }
+        public ICollection<BookCategory> BookCategory { get; set; }
         //Quan hệ một-nhiều
         public ICollection<BookImage> Images { get; set; }
     }

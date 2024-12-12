@@ -562,10 +562,10 @@ D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\QuanLyKhoSach.RazorAssemblyInfo.
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\scopedcss\bundle\QuanLyKhoSach.styles.css
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\scopedcss\projectbundle\QuanLyKhoSach.bundle.scp.css
-D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\n6x0ci8vpr-4evq8y5zrs.gz
+D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\n6x0ci8vpr-ujocb3vl67.gz
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\k1ixdzm2tg-c2tiyv64ts.gz
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\aoieskst9d-61n19gt1b8.gz
-D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\s6170xtaaq-mu3gg1i7pi.gz
+D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\s6170xtaaq-m0kpmsuun1.gz
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\qz2xneh1aa-agp80tu62r.gz
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\49wxr2wj87-st1cbwfwo5.gz
 D:\QuanLyKhoSach\QuanLyKhoSach\obj\Debug\net9.0\compressed\tc3tcb20c3-unj9p35syc.gz

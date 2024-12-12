@@ -494,25 +494,6 @@
         }
       }
     },
-    "/": {
-      "get": {
-        "tags": [
-          "QuanLyKhoSach"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Store/allstore": {
       "get": {
         "tags": [
@@ -969,9 +950,9 @@
             "type": "string",
             "nullable": true
           },
-          "year": {
-            "type": "string",
-            "format": "date-time"
+          "book_Year": {
+            "type": "integer",
+            "format": "int32"
           },
           "book_Description": {
             "type": "string",
@@ -989,6 +970,10 @@
             "type": "string",
             "nullable": true
           },
+          "publisher_ID": {
+            "type": "integer",
+            "format": "int32"
+          },
           "wareHouse_Name": {
             "type": "string",
             "nullable": true
@@ -997,21 +982,18 @@
             "type": "string",
             "nullable": true
           },
-          "authors": {
+          "wareHouse_ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "author": {
             "type": "array",
             "items": {
               "type": "string"
             },
             "nullable": true
           },
-          "categories": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "bookImages": {
+          "category": {
             "type": "array",
             "items": {
               "type": "string"
@@ -1033,8 +1015,8 @@
             "nullable": true
           },
           "publisher_Phone": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "book": {
             "type": "array",

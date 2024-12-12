@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
 using QuanLyKhoSach.DTO;
 using QuanLyKhoSach.Interface.Repository;
 using QuanLyKhoSach.Interface.Service;
 using QuanLyKhoSach.Models;
-using QuanLyKhoSach.Repository;
+using System.Text.Json;
 
 namespace QuanLyKhoSach.Services
 {
-    public class BookService: IBookService
+    public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
         private readonly IMapper _mapper;
@@ -30,23 +29,43 @@ namespace QuanLyKhoSach.Services
         public async Task<BookDTO> GetBookByIdAsync(int id)
         {
             var book = await _bookRepository.GetBookByIdAsync(id);
-            if (book == null)
-            {
-                throw new DirectoryNotFoundException("Không tìm thấy");
-            }
             return _mapper.Map<BookDTO>(book);
         }
         public async Task<IEnumerable<BookDTO>> GetAllBooksAsync()
         {
-            var books=await _bookRepository.GetAllBooksAsync();
-            return _mapper.Map<IEnumerable<BookDTO>>(books);        
+            var books = await _bookRepository.GetAllBooksAsync();
+            return _mapper.Map<IEnumerable<BookDTO>>(books);
         }
 
         public async Task<BookDTO> UpdateBookAsync(BookDTO bookdto)
         {
+            var jsonBookDto = JsonSerializer.Serialize(bookdto);
+            Console.WriteLine($"Full BookDTO: {jsonBookDto}");
+            // Validate dữ liệu đầu vào
+            if (bookdto == null)
+            {
+                throw new ArgumentNullException(nameof(bookdto));
+            }
+
+            // Kiểm tra các trường bắt buộc
+            if (string.IsNullOrWhiteSpace(bookdto.Book_Name))
+            {
+                throw new ArgumentException("Tên sách không được để trống");
+            }
+
+            if (bookdto.Publisher_ID <= 0)
+            {
+                throw new ArgumentException("Mã nhà xuất bản không hợp lệ");
+            }
+
+            if (bookdto.WareHouse_ID <= 0)
+            {
+                throw new ArgumentException("Mã kho sách không hợp lệ");
+            }
+
             var book = _mapper.Map<Book>(bookdto);
-            await _bookRepository.UpdateBookAsync(book);
-            return _mapper.Map<BookDTO>(book);
+            var updatedBook = await _bookRepository.UpdateBookAsync(book);
+            return _mapper.Map<BookDTO>(updatedBook);
         }
         public async Task DeleteBookAsync(int id)
         {
@@ -61,8 +80,8 @@ namespace QuanLyKhoSach.Services
 
         public async Task<BookAuthorDTO> AddAuthorToBookAsync(BookAuthorDTO bookauthordto)
         {
-            var bookauthor=_mapper.Map<BookAuthor>(bookauthordto);
-            var addedbookauthor=await _bookRepository.AddAuthorToBookAsync(bookauthor);
+            var bookauthor = _mapper.Map<BookAuthor>(bookauthordto);
+            var addedbookauthor = await _bookRepository.AddAuthorToBookAsync(bookauthor);
             return _mapper.Map<BookAuthorDTO>(bookauthor);
         }
     }
