@@ -36,7 +36,7 @@ namespace QuanLyKhoSach.Services
 
         public async Task<StoreDTO> GetStoreByIDAsync(int id)
         {
-            var store= await _storeRepository.GetStoreByID(id);
+            var store= await _storeRepository.GetStoreByIDAsync(id);
             return _mapper.Map<StoreDTO>(store);
         }
 

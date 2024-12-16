@@ -99,7 +99,7 @@ namespace QuanLyKhoSach.Repository
         public async Task<Book> UpdateBookAsync(Book book)
         {
             try
-            {  // Kiểm tra sự tồn tại của Publisher
+            {  
                 var publisherExists = await _context.Publisher
                     .AnyAsync(p => p.Publisher_ID == book.Publisher_ID);
 
@@ -108,7 +108,7 @@ namespace QuanLyKhoSach.Repository
                     throw new ArgumentException($"Nhà xuất bản với ID {book.Publisher_ID} không tồn tại");
                 }
 
-                // Kiểm tra sự tồn tại của Warehouse
+               
                 var warehouseExists = await _context.WareHouse
                     .AnyAsync(w => w.WareHouse_ID == book.WareHouse_ID);
 

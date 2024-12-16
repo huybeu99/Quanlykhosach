@@ -5,7 +5,7 @@ using QuanLyKhoSach.Interface.Service;
 namespace QuanLyKhoSach.Controllers
 {
     [ApiController]
-    [Route("api / [controller]")]
+    [Route("api/[controller]")]
     public class WareHouseController:BaseController
     {
         private readonly IWareHouseService _warehouseservice;
@@ -13,7 +13,7 @@ namespace QuanLyKhoSach.Controllers
         {
             _warehouseservice= warehouseservice;
         }
-        [HttpGet("allwarehouse")]
+            [HttpGet("allwarehouse")]
         public async Task<ActionResult<IEnumerable<WareHouseDTO>>> GetAllWareHouse()
         {
             try

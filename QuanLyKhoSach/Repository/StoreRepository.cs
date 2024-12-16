@@ -34,7 +34,7 @@ namespace QuanLyKhoSach.Repository
             return await _context.Store.ToListAsync();
         }
 
-        public async Task<Store> GetStoreByID(int id)
+        public async Task<Store> GetStoreByIDAsync(int id)
         {
             return await _context.Store.FirstOrDefaultAsync(s => s.Store_ID == id);
         }

@@ -7,7 +7,7 @@ using QuanLyKhoSach.Services;
 namespace QuanLyKhoSach.Controllers
 {
     [ApiController]
-    [Route("api / [controller]")]
+    [Route("api/[controller]")]
     public class PublisherController:BaseController
     {
         private readonly IPublisherService _publisherservice;

@@ -18,10 +18,14 @@ builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IWareHouseRepository, WareHouseRepository>();
 builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<ICategoryRepository,CategoryRepository >();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IStoreService, StoreService>();
 builder.Services.AddScoped<IWareHouseService, WareHouseService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -29,7 +33,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddLogging(logging =>
 {
     logging.AddConsole();
-    logging.AddDebug(); // Thêm debug logging
+    logging.AddDebug(); // Thï¿½m debug logging
 });
 builder.Services.AddHttpClient();
 builder.Services.AddCors(options =>
