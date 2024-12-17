@@ -49,6 +49,10 @@ namespace QuanLyKhoSach.Controllers
         [HttpPost]
         public async Task<ActionResult<BookDTO>> CreateBook([FromBody]BookDTO bookDto)
         {
+            if (bookDto.Author == null || bookDto.Author.Count == 0 || bookDto.Author[0] == null)
+            {
+                return BadRequest("An author must be selected");
+            }
             try
             {
                 var createdBook = await _bookService.AddBookAsync(bookDto);

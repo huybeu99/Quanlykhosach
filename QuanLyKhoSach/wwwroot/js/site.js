@@ -202,18 +202,20 @@ function deleteBook(id) {
         }
     });
 }
+
 function loaddropdown() {
     $.ajax({
         url: 'api/publisher/allpublisher',
         method: 'GET',
-        success: function(publishers) {
+        success: function (publishers) {
             var publisherSelect = $('#publisher');
             publisherSelect.empty();
-            publishers.forEach(function(publisher) {
+            publishers.forEach(function (publisher) {
                 publisherSelect.append(`
                     <option value="${publisher.publisher_ID}">
-                        ${publisher.publisher_Name}
+                        ${publisher.publisher_Name}  (${publisher.publisher_Phone})
                     </option>
+                    
                 `);
             });
         }
@@ -221,13 +223,13 @@ function loaddropdown() {
     $.ajax({
         url: 'api/wareHouse/allwarehouse',
         method: 'GET',
-        success: function(warehouses) {
+        success: function (warehouses) {
             var warehousesSelect = $('#wareHouse');
             warehousesSelect.empty();
-            warehouses.forEach(function(warehouse) {
+            warehouses.forEach(function (warehouse) {
                 warehousesSelect.append(`
                     <option value="${warehouse.wareHouse_ID}">
-                        ${warehouse.wareHouse_Name}
+                        ${warehouse.wareHouse_Name} (${warehouse.wareHouse_Address})
                     </option>
                 `);
             });
@@ -236,10 +238,10 @@ function loaddropdown() {
     $.ajax({
         url: 'api/author/allauthor',
         method: 'GET',
-        success: function(authors) {
+        success: function (authors) {
             var authorSelected = $('#author');
             authorSelected.empty();
-            authors.forEach(function(author) {
+            authors.forEach(function (author) {
                 authorSelected.append(`
                     <option value="${author.author_ID}">
                         ${author.author_Name}
@@ -251,10 +253,10 @@ function loaddropdown() {
     $.ajax({
         url: 'api/category/allcategory',
         method: 'GET',
-        success: function(categories) {
+        success: function (categories) {
             var categorySelected = $('#category');
             categorySelected.empty();
-            categories.forEach(function(category) {
+            categories.forEach(function (category) {
                 categorySelected.append(`
                     <option value="${category.category_ID}">
                         ${category.category_Name}
@@ -264,42 +266,47 @@ function loaddropdown() {
         }
     });
 }
+
 function add() {
     $.get('/api/book/allbooks', function (data) {
-        var maxbookid=Math.max(...data.map(function(book){
+        var maxbookid = Math.max(...data.map(function (book) {
             return book.book_ID;
         }))
-        var author = $('#author').val();
-        if (!author || typeof author !== 'string') {
-            alert('Tên tác giả không được để trống và phải là chuỗi.');
-            return;
-        }
-    var bookdata = {
-        Book_ID: maxbookid+1,
-        Book_Name: $('#bookName').val(),
-        Book_Description: $('#bookDescription').val(),
-        Book_Year: parseInt($('#bookYear').val()),
-        Book_Quantity: parseInt($('#bookQuantity').val()),
-        Publisher_ID: $('#publisher').val(),
-        Author: [author],
-        Category: [$('#category').val()],
-        WareHouse_ID: $('#wareHouse').val(),
-    };
-    $.ajax({
-        url: 'api/book',
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({bookDto: bookdata}),
-        success: function (response) {
-            // Đóng modal sau khi lưu thành công
-            $('#addBookModal').modal('hide');
-            // Làm mới danh sách sách hoặc thông báo thành công
-            alert('Thêm sách thành công!');
-        },
-        error: function (xhr, status, error) {
-            console.error('Chi tiết lỗi:', xhr.responseJSON);
-            alert('Có lỗi xảy ra: ' + (xhr.responseJSON?.errors ? JSON.stringify(xhr.responseJSON.errors) : error));
-        }
-    })
+        var bookdata = {
+            Book_ID: maxbookid + 1,
+            Book_Name: $('#bookName').val(),
+            Book_Description: $('#bookDescription').val(),
+            Book_Year: parseInt($('#bookYear').val()),
+            Book_Quantity: parseInt($('#bookQuantity').val()),
+            Publisher_ID: $('#publisher').val(),
+            Publisher_Name: $('#publisher option:selected').text().split('(')[0].trim(),
+            Publisher_Phone: $('#publisher option:selected').text().match(/\(([^)]+)\)/)[1],
+            Author: [
+               $('#author').val()
+            ],
+            Category: [
+            $('#category').val()
+            ],
+            WareHouse_ID: $('#wareHouse').val(),
+            WareHouse_Name: $('#wareHouse option:selected').text().split('(')[0].trim(),
+            WareHouse_Address: $('#wareHouse option:selected').text().match(/\(([^)]+)\)/)[1],
+        };
+        $.ajax({
+            url: 'api/book',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(bookdata),
+            success: function (response) {
+                // Đóng modal sau khi lưu thành công
+                $('#addBookModal').modal('hide');
+                // Làm mới danh sách sách hoặc thông báo thành công
+                alert('Thêm sách thành công!');
+                loadBooks();
+            },
+            error: function (xhr, status, error) {
+                console.error('Chi tiết lỗi:', xhr.responseJSON);
+                alert('Có lỗi xảy ra: ' + (xhr.responseJSON?.errors ? JSON.stringify(xhr.responseJSON.errors) : error));
+            }
+        })
     });
 }

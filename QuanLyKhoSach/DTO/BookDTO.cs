@@ -21,14 +21,19 @@
 
 
         // Danh sách tác giả (nếu cần)
-        public List<string> Author { get; set; }
+        public List<AuthorDetail> Author { get; set; }
 
         // Danh sách thể loại (nếu cần)
-        public List<string> Category { get; set; }
+        public List<CategoryDetail> Category { get; set; }
         public class AuthorDetail
         {
             public int Author_ID { get; set; }
             public string Author_Name { get; set; }
+        }
+        public class CategoryDetail
+        {
+            public int Category_ID { get; set; }
+            public string Category_Name { get; set; }
         }
     }
 

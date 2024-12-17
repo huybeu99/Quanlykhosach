@@ -13,7 +13,7 @@ namespace QuanLyKhoSach.Repository
         {
             _context = context;
         }
-
+    
         public async Task<IEnumerable<Book>> GetAllBooksAsync()
         {
             return await _context.Book
@@ -21,6 +21,8 @@ namespace QuanLyKhoSach.Repository
                 .Include(b => b.WareHouse)
                 .Include(b => b.BookAuthor).ThenInclude(ba => ba.Author)
                 .Include(b => b.BookCategory).ThenInclude(bc => bc.Category)
+                .AsSplitQuery()
+                .AsNoTracking()
                 .ToListAsync();
         }
 
