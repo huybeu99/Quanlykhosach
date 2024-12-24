@@ -8,61 +8,75 @@ namespace QuanLyKhoSach.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Book, BookDTO>()
+               CreateMap<Book, BookDTO>()
+                // Direct properties
                 .ForMember(dest => dest.Book_ID, opt => opt.MapFrom(src => src.Book_ID))
                 .ForMember(dest => dest.Book_Name, opt => opt.MapFrom(src => src.Book_Name))
                 .ForMember(dest => dest.Book_Description, opt => opt.MapFrom(src => src.Book_Description))
                 .ForMember(dest => dest.Book_Quantity, opt => opt.MapFrom(src => src.Book_Quantity))
                 .ForMember(dest => dest.Book_Year, opt => opt.MapFrom(src => src.Book_Year))
-                .ForMember(dest => dest.Publisher_Name, opt => opt.MapFrom(src => src.Publisher.Publisher_Name))
-                .ForMember(dest => dest.Publisher_Phone, opt => opt.MapFrom(src => src.Publisher.Publisher_Phone))
-                .ForMember(dest => dest.Publisher_ID, opt => opt.MapFrom(src => src.Publisher.Publisher_ID))
-                .ForMember(dest => dest.WareHouse_Name, opt => opt.MapFrom(src => src.WareHouse.WareHouse_Name))
-                .ForMember(dest => dest.WareHouse_Address, opt => opt.MapFrom(src => src.WareHouse.WareHouse_Address))
-                .ForMember(dest => dest.WareHouse_ID, opt => opt.MapFrom(src => src.WareHouse.WareHouse_ID))
+                
+                // Publisher properties
+                .ForMember(dest => dest.Publisher_ID, opt => opt.MapFrom(src => src.Publisher_ID))
+                .ForMember(dest => dest.Publisher_Name, opt => opt.MapFrom(src => src.Publisher != null ? src.Publisher.Publisher_Name : null))
+                .ForMember(dest => dest.Publisher_Phone, opt => opt.MapFrom(src => src.Publisher != null ? src.Publisher.Publisher_Phone : null))
+                
+                // WareHouse properties
+                .ForMember(dest => dest.WareHouse_ID, opt => opt.MapFrom(src => src.WareHouse_ID))
+                .ForMember(dest => dest.WareHouse_Name, opt => opt.MapFrom(src => src.WareHouse != null ? src.WareHouse.WareHouse_Name : null))
+                .ForMember(dest => dest.WareHouse_Address, opt => opt.MapFrom(src => src.WareHouse != null ? src.WareHouse.WareHouse_Address : null))
+                
+                // Author collection
                 .ForMember(dest => dest.Author, opt => opt.MapFrom(src => 
-                    src.BookAuthor.Select(ba => new BookDTO.AuthorDetail
+                    src.BookAuthor != null ? src.BookAuthor.Select(ba => new BookDTO.AuthorDetail
                     {
-                        Author_ID = ba.Author_ID,
+                        Author_ID = ba.Author.Author_ID,
                         Author_Name = ba.Author.Author_Name
-                    }).ToList()))
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src =>
-                    src.BookCategory.Select(bc => new BookDTO.CategoryDetail
+                    }).ToList() : new List<BookDTO.AuthorDetail>()))
+                
+                // Category collection
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => 
+                    src.BookCategory != null ? src.BookCategory.Select(bc => new BookDTO.CategoryDetail
                     {
-                        Category_ID = bc.Category_ID,
+                        Category_ID = bc.Category.Category_ID,
                         Category_Name = bc.Category.Category_Name
-                    }).ToList()));
-         
+                    }).ToList() : new List<BookDTO.CategoryDetail>()));
+
+            // BookDTO -> Book mapping
             CreateMap<BookDTO, Book>()
+                // Direct properties
+                .ForMember(dest => dest.Book_ID, opt => opt.MapFrom(src => src.Book_ID))
+                .ForMember(dest => dest.Book_Name, opt => opt.MapFrom(src => src.Book_Name))
+                .ForMember(dest => dest.Book_Description, opt => opt.MapFrom(src => src.Book_Description))
+                .ForMember(dest => dest.Book_Quantity, opt => opt.MapFrom(src => src.Book_Quantity))
+                .ForMember(dest => dest.Book_Year, opt => opt.MapFrom(src => src.Book_Year))
                 .ForMember(dest => dest.Publisher_ID, opt => opt.MapFrom(src => src.Publisher_ID))
                 .ForMember(dest => dest.WareHouse_ID, opt => opt.MapFrom(src => src.WareHouse_ID))
+                
+                // Map collections
                 .ForMember(dest => dest.BookAuthor, opt => opt.MapFrom(src => 
-                    src.Author.Select(authorDetail => new BookAuthor
+                    src.Author.Select(a => new BookAuthor 
                     {
-                        Author_ID = authorDetail.Author_ID,
-                        Author = new Author
-                        {
-                            Author_ID = authorDetail.Author_ID,
-                            Author_Name = authorDetail.Author_Name
-                        }
+                        Book_ID = src.Book_ID,
+                        Author_ID = a.Author_ID
                     }).ToList()))
                 .ForMember(dest => dest.BookCategory, opt => opt.MapFrom(src => 
-                    src.Category.Select(categoryDetail => new BookCategory
+                    src.Category.Select(c => new BookCategory
                     {
-                        Category_ID = categoryDetail.Category_ID,
-                        Category = new Category
-                        {
-                            Category_ID = categoryDetail.Category_ID,
-                            Category_Name = categoryDetail.Category_Name
-                        }
-                    }).ToList()))
-                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+                        Book_ID = src.Book_ID,
+                        Category_ID = c.Category_ID
+                    }).ToList()));
             
             CreateMap<Author, AuthorDTO>()
           .ForMember(dest => dest.Author_ID, opt => opt.MapFrom(src => src.Author_ID))
           .ForMember(dest => dest.Author_Name, opt => opt.MapFrom(src => src.Author_Name))
-          .ForMember(dest => dest.Books, opt => opt.MapFrom(src => src.BookAuthors.Select(ba => ba.Book.Book_Name)));
+          .ForMember(dest => dest.BookID, opt => opt.MapFrom(src => src.BookAuthors.Select(ba => ba.Book.Book_ID)));
 
+            CreateMap<AuthorDTO, Author>()
+                .ForMember(dest => dest.BookAuthors, opt => opt.Ignore())
+                .ForMember(dest => dest.Author_ID, opt => opt.MapFrom(src => src.Author_ID))
+                .ForMember(dest => dest.Author_Name, opt => opt.MapFrom(src => src.Author_Name));
+            
             CreateMap<Category, CategoryDTO>()
           .ForMember(dest => dest.Category_ID, opt => opt.MapFrom(src => src.Category_ID))
           .ForMember(dest => dest.Category_Name, opt => opt.MapFrom(src => src.Category_Name))

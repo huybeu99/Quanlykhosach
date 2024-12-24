@@ -58,46 +58,6 @@ namespace QuanLyKhoSach.Repository
             _context.Book.Remove(book);
             await _context.SaveChangesAsync();
         }
-
-
-        //public async Task<Book> UpdateBookAsync(Book book)
-        //{
-        //    var ExitingBook = await _context.Book.FirstOrDefaultAsync(b => b.Book_ID == book.Book_ID);
-        //    if (ExitingBook == null)
-        //    {
-        //        throw new NotFoundException("Không tìm thấy gì");
-        //    }
-        //    ExitingBook.Book_ID = book.Book_ID;
-        //    ExitingBook.Book_Name = book.Book_Name;
-        //    ExitingBook.Book_Year = book.Book_Year;
-        //    ExitingBook.Book_Description = book.Book_Description;
-        //    ExitingBook.Book_Quantity = book.Book_Quantity;
-        //    ExitingBook.Publisher_ID = book.Publisher_ID;
-        //    ExitingBook.WareHouse_ID = book.WareHouse_ID;
-        //    ExitingBook.Images = book.Images ?? ExitingBook.Images;
-        //    // Cập nhật mối quan hệ nhiều-nhiều BookAuthor
-        //    if (book.BookAuthor != null)
-        //    {
-        //        // Xóa các mối quan hệ cũ
-        //        _context.Book_Author.RemoveRange(ExitingBook.BookAuthor);
-
-        //        // Thêm các mối quan hệ mới
-        //        ExitingBook.BookAuthor = book.BookAuthor;
-        //    }
-
-        //    // Cập nhật mối quan hệ nhiều-nhiều BookCategory
-        //    if (book.BookCategory != null)
-        //    {
-        //        // Xóa các mối quan hệ cũ
-        //        _context.Book_Category.RemoveRange(ExitingBook.BookCategory);
-
-        //        // Thêm các mối quan hệ mới
-        //        ExitingBook.BookCategory = book.BookCategory;
-        //    }
-
-        //    await _context.SaveChangesAsync();
-        //    return ExitingBook;
-        //}
         public async Task<Book> UpdateBookAsync(Book book)
         {
             try
@@ -120,6 +80,8 @@ namespace QuanLyKhoSach.Repository
                 }
 
                 var existingBook = await _context.Book
+                    .Include(b => b.BookAuthor) // Include Author relationship
+                    .Include(b => b.BookCategory) // Include Category relationship if needed
                     .FirstOrDefaultAsync(b => b.Book_ID == book.Book_ID);
 
                 if (existingBook == null)
@@ -134,6 +96,48 @@ namespace QuanLyKhoSach.Repository
                 existingBook.Book_Quantity = book.Book_Quantity;
                 existingBook.Publisher_ID = book.Publisher_ID;
                 existingBook.WareHouse_ID = book.WareHouse_ID;
+                
+                _context.Book_Author.RemoveRange(existingBook.BookAuthor);
+                if (book.BookAuthor != null && book.BookAuthor.Any())
+                {
+                    foreach (var bookauthor in book.BookAuthor)
+                    {
+                        Console.WriteLine($"Author ID received: {bookauthor.Author_ID}");
+
+                        var authorExitts=await _context.Author.AnyAsync(a => a.Author_ID == bookauthor.Author_ID);
+                        if (!authorExitts)
+                        {
+                            throw new ArgumentException($"Tác giả với ID {bookauthor.Author_ID} không tồn tại");
+                        }
+                        var newBookAuthor = new BookAuthor
+                        {
+                            Book_ID = existingBook.Book_ID,
+                            Author_ID = bookauthor.Author_ID
+                        };
+                
+                        _context.Book_Author.Add(newBookAuthor);
+                    }
+                }
+                
+                _context.Book_Category.RemoveRange(existingBook.BookCategory);
+                if (book.BookCategory != null && book.BookCategory.Any())
+                {
+                    foreach (var bookcategory in book.BookCategory)
+                    {
+                        var categoryExitts=await _context.Category.AnyAsync(a => a.Category_ID == bookcategory.Category_ID);
+                        if (!categoryExitts)
+                        {
+                            throw new ArgumentException($"Tác giả với ID {bookcategory.Category_ID} không tồn tại");
+                        }
+                        var newBookCategory = new BookCategory
+                        {
+                            Book_ID = existingBook.Book_ID,
+                            Category_ID = bookcategory.Category_ID,
+                        };
+                
+                        _context.Book_Category.Add(newBookCategory);
+                    }
+                }
 
                 await _context.SaveChangesAsync();
                 return existingBook;

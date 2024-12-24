@@ -56,51 +56,108 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Publisher</label>
-                            <select class="form-select form-select-sm mt-3" id="publisher"> 
+                            <select class="form-select form-select-sm mt-3 " id="publisher">
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Author</label>
-                            <select class="form-select form-select-sm mt-3" id="author" required>
-                               
+                            <select class="form-select form-select-sm mt-3" id="author">
                             </select>
+
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Category</label>
-                            <select class="form-select form-select-sm mt-3" id="category" required>
-                               
+                            <select class="form-select form-select-sm mt-3" id="category">
+
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">WareHouse</label>
-                            <select class="form-select form-select-sm mt-3" id="wareHouse">
-                               
+                            <select class="form-select form-select-sm mt-3" id="warehouse">
+
                             </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="add()">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="addbook()">Save</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Edit Book Modal -->
-<div class="modal fade" id="editBookModal">
+<!-- Detail Book Modal -->
+<div class="modal fade" id="detailBookModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Book</h5>
+                <h5 class="modal-title">Book Detail</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <form id="editBookForm">
-                    <input type="hidden" id="editBookId">
                     <div class="mb-3">
                         <label class="form-label">Book Name</label>
-                        <input type="text" class="form-control" id="editBookName" required>
+                        <input type="text" class="form-control" id="detailBookName" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="detailBookDescription" readonly></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Year</label>
+                        <input type="text" class="form-control" id="detailBookYear" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <input type="text" class="form-control" id="detailBookCategory" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Author</label>
+                        <input type="text" class="form-control" id="detailBookAuthor" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Publisher</label>
+                        <input type="text" class="form-control" id="detailBookPublisher" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Publisher Phone</label>
+                        <input type="text" class="form-control" id="detailPublisherPhone" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Quantity</label>
+                        <input type="text" class="form-control" id="detailBookQuantity" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Warehouse</label>
+                        <input type="text" class="form-control" id="detailBookWarehouse" readonly/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Warehouse Address</label>
+                        <input type="text" class="form-control" id="detailWareHouseAddress" readonly/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Update Book Model -->
+<div class="modal fade" id="updateBookModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateBookForm">
+                    <div class="mb-3">
+                        <label class="form-label">Book Name</label>
+                        <input type="text" class="form-control" id="editBookName" required/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
@@ -111,42 +168,58 @@
                         <input type="text" class="form-control" id="editBookYear"/>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Category</label>
-                        <input type="text" class="form-control" id="editBookCategory"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Author</label>
-                        <input type="text" class="form-control" id="editBookAuthor"/>
-                    </div>
-                    <input type="hidden" id="editPublisherId">
-                    <div class="mb-3">
-                        <label class="form-label">Publisher</label>
-                        <input type="text" class="form-control" id="editBookPublisher"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Publisher Phone</label>
-                        <input type="text" class="form-control" id="editPublisherPhone"/>
-                    </div>
-                    <div class="mb-3">
                         <label class="form-label">Quantity</label>
                         <input type="text" class="form-control" id="editBookQuantity"/>
                     </div>
-                    <input type="hidden" id="editWarehouseId">
                     <div class="mb-3">
-                        <label class="form-label">Warehouse</label>
-                        <input type="text" class="form-control" id="editBookWarehouse"/>
+                        <label class="form-label">Publisher</label>
+                        <select class="form-select form-select-sm mt-3 publisher">
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Warehouse Address</label>
-                        <input type="text" class="form-control" id="editWareHouseAddress"/>
+                        <label class="form-label">Author</label>
+                        <select class="form-select form-select-sm mt-3 author">
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select class="form-select form-select-sm mt-3 category">
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">WareHouse</label>
+                        <select class="form-select form-select-sm mt-3 wareHouse">
+
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addAuthorModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Author</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addAuthorForm">
+                    <div class="mb-3">
+                        <label class="form-label">Book Name</label>
+                        <input type="text" class="form-control" id="authorName" required/>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-primary btn-sm" data-book-id="id" id="updateButton">Update</button>
-<!--                <button class="btn btn-primary btn-sm" onclick="updateBook()">Update</button>-->
-
+                <button type="button" class="btn btn-primary btn-sm" onclick="addauthor()">Save</button>
             </div>
         </div>
     </div>

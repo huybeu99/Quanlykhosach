@@ -4,6 +4,6 @@
     {
         public int Author_ID { get; set; }
         public string Author_Name { get; set; }
-        public List<BookDTO> Books { get; set; }
+        public List<int> BookID { get; set; } = new List<int>();
     }
 }

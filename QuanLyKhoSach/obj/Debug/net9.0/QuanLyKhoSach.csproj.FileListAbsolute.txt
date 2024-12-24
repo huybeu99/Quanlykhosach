@@ -1205,10 +1205,7 @@ D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\QuanLyKhoSach.sou
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\scopedcss\bundle\QuanLyKhoSach.styles.css
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\scopedcss\projectbundle\QuanLyKhoSach.bundle.scp.css
-D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\n6x0ci8vpr-hjzmt6k1vl.gz
-D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\k1ixdzm2tg-c2tiyv64ts.gz
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\aoieskst9d-61n19gt1b8.gz
-D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\s6170xtaaq-oky7ynrupa.gz
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\qz2xneh1aa-nakmwdwsxp.gz
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\49wxr2wj87-st1cbwfwo5.gz
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\tc3tcb20c3-5p029spbuu.gz
@@ -1282,3 +1279,6 @@ D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\refint\QuanLyKhoS
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\QuanLyKhoSach.pdb
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\QuanLyKhoSach.genruntimeconfig.cache
 D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\ref\QuanLyKhoSach.dll
+D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\k1ixdzm2tg-c8e9crwy9w.gz
+D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\n6x0ci8vpr-in9tojqi3o.gz
+D:\New folder (2)\Quanlykhosach\QuanLyKhoSach\obj\Debug\net9.0\compressed\s6170xtaaq-9hj5bgjz26.gz

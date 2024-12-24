@@ -2,6 +2,7 @@
 using QuanLyKhoSach.DTO;
 using QuanLyKhoSach.Interface.Repository;
 using QuanLyKhoSach.Interface.Service;
+using QuanLyKhoSach.Models;
 
 namespace QuanLyKhoSach.Services;
 
@@ -27,9 +28,11 @@ public class AuthorService:IAuthorService
         return _mapper.Map<AuthorDTO>(author);
     }
 
-    public Task<AuthorDTO> AddAuthorAsync(AuthorDTO authordto)
+    public async Task<AuthorDTO> AddAuthorAsync(AuthorDTO authordto)
     {
-        throw new NotImplementedException();
+        var author = _mapper.Map<Author>(authordto);
+        var addauthor = await _authorRepository.AddAuthorAsync(author);
+        return _mapper.Map<AuthorDTO>(addauthor);
     }
 
     public Task<AuthorDTO> UpdateAuthorAsync(AuthorDTO authordto)

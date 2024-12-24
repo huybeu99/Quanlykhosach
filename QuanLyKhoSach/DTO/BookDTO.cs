@@ -20,10 +20,10 @@
         public int WareHouse_ID { get; set; }
 
 
-        // Danh sách tác giả (nếu cần)
+        // Danh sách tác giả 
         public List<AuthorDetail> Author { get; set; }
 
-        // Danh sách thể loại (nếu cần)
+        // Danh sách thể loại 
         public List<CategoryDetail> Category { get; set; }
         public class AuthorDetail
         {
@@ -37,7 +37,7 @@
         }
     }
 
-    //// Danh sách hình ảnh của sách (nếu cần)
+    //// Danh sách hình ảnh của sách 
     //public List<string> BookImage { get; set; }
 }
 

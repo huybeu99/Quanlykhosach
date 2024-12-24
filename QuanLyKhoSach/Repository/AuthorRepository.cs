@@ -15,17 +15,27 @@ public class AuthorRepository : IAuthorRepository
 
     public async Task<IEnumerable<Author>> GetAllAuthorAsync()
     {
-          return _context.Author.ToList();
+          return _context.Author
+              .Include(b => b.BookAuthors)
+              .ThenInclude(ba => ba.Book)
+              .AsSplitQuery()
+              .AsNoTracking()
+              .ToList();
     }
 
     public async Task<Author> GetAllAuthorByIDAsync(int id)
     {
-        return await _context.Author.FirstOrDefaultAsync(b => b.Author_ID == id);
+        return await _context.Author
+            .Include(b => b.BookAuthors )
+            .ThenInclude(ba => ba.Book)
+            .FirstOrDefaultAsync(b => b.Author_ID == id);
     }
 
-    public Task<Author> AddAuthorAsync(Author author)
+    public async Task<Author> AddAuthorAsync(Author author)
     {
-        throw new NotImplementedException();
+        _context.Author.Add(author);
+        await _context.SaveChangesAsync();
+        return author;
     }
 
     public Task<Author> UpdateAuthorAsync(Author author)

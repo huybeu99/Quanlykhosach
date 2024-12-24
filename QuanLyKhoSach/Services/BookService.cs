@@ -39,8 +39,6 @@ namespace QuanLyKhoSach.Services
 
         public async Task<BookDTO> UpdateBookAsync(BookDTO bookdto)
         {
-            var jsonBookDto = JsonSerializer.Serialize(bookdto);
-            Console.WriteLine($"Full BookDTO: {jsonBookDto}");
             // Validate dữ liệu đầu vào
             if (bookdto == null)
             {
